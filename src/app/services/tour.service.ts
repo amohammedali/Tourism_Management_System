@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { DESTINATIONS, TOUR_PACKAGES, Destination, TourPackage, StoredBooking } from '../data/travel-data';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 
 export type { Destination, TourPackage } from '../data/travel-data';
 
