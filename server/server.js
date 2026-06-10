@@ -24,6 +24,18 @@ mongoose.connect(MONGODB_URI)
 
 // API Routes
 
+// --- Seed Database ---
+app.get('/api/seed', async (req, res) => {
+  try {
+    const destinations = require('./data');
+    await Destination.deleteMany({});
+    await Destination.insertMany(destinations);
+    res.json({ message: 'Database seeded with destinations! You can now go back to the home page.' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // --- Destinations ---
 app.get('/api/destinations', async (req, res) => {
   try {

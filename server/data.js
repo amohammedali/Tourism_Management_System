@@ -1,13 +1,4 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
-const Destination = require('./models/Destination');
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/tourism_db';
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB for seeding...'))
-  .catch(err => console.error('Could not connect to MongoDB', err));
-
-const destinations = [
+module.exports = [
   {
     id: 1,
     name: 'Santorini',
@@ -97,12 +88,3 @@ const destinations = [
     tags: ['Trekking', 'Mountains']
   }
 ];
-
-const seedDB = async () => {
-  await Destination.deleteMany({});
-  await Destination.insertMany(destinations);
-  console.log('Database seeded with destinations!');
-  mongoose.connection.close();
-};
-
-seedDB();
