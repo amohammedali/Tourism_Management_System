@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { DESTINATIONS, TOUR_PACKAGES, Destination, TourPackage, StoredBooking } from '../data/travel-data';
+import { environment } from '../../../environments/environment';
 
 export type { Destination, TourPackage } from '../data/travel-data';
 
@@ -10,7 +11,7 @@ export type { Destination, TourPackage } from '../data/travel-data';
   providedIn: 'root'
 })
 export class TourService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

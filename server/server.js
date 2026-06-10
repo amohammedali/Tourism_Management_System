@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -9,15 +10,16 @@ const Booking = require('./models/Booking');
 const User = require('./models/User');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/tourism_db')
-  .then(() => console.log('Connected to MongoDB (tourism_db)'))
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/tourism_db';
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB', err));
 
 // API Routes
